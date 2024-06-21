@@ -1,4 +1,6 @@
-#Part 0 ex 4
+#0.4: Nuevo diagrama de nota
+<H1>0.4: Nuevo diagrama de nota</H1>
+<P>Describe la situación en la que el usuario crea una nueva nota en la página https://studies.cs.helsinki.fi/exampleapp/notes escribiendo algo en el campo de texto y haciendo clic en el botón Save</p>
 
 ```mermaid
 
