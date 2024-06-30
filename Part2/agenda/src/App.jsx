@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import { useEffect } from 'react'
+import axios from 'Axios'
 import Perdonform from './components/Personform'
 import Filtro from './components/Filtro'
 import Persona from './components/Persona'
@@ -8,13 +10,18 @@ const App = () => {
   
   const [entradaName, setEntradaName] = useState('') //esta entrada levanta el input de NOMBRE
   const [entradaPhone, setEntradaPhone] = useState(0) //levanta el input teléfono
-  const [contactos, setContactos] = useState([ //es el array de objetos "CONTACTO"
-      { name: 'Arto Hellas', phone: '040-123456', id: 1 },
-      { name: 'Ada Lovelace', phone: '39-44-5323523', id: 2 },
-      { name: 'Dan Abramov', phone: '12-43-234345', id: 3 },
-      { name: 'Mary Poppendieck', phone: '39-23-6423122', id: 4 }
-    ])
+  const [contactos, setContactos] = useState([])
  
+  useEffect(() => {
+    console.log('effect')
+    axios
+      .get('http://localhost:3001/persons')
+      .then(response => {
+        console.log('promise fulfilled')
+        setContactos(response.data)
+      })
+  }, [])
+
   const [search, setSearch] = useState('')//levanta los términos de búsqueda
   let existeName = false //variables para verificar si el contacto existe en la agenda
   let existePhone = false
