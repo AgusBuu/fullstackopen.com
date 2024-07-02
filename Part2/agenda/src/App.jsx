@@ -5,6 +5,7 @@ import Perdonform from './components/Personform'
 import Filtro from './components/Filtro'
 import Persona from './components/Persona'
 import Personform from './components/Personform'
+import agendaHandle from './services/contactos'
 
 const App = () => {
   
@@ -14,8 +15,8 @@ const App = () => {
  
   useEffect(() => {
     console.log('effect')
-    axios
-      .get('http://localhost:3001/persons')
+    agendaHandle
+      .getAll()
       .then(response => {
         console.log('promise fulfilled')
         setContactos(response.data)
@@ -41,9 +42,12 @@ const App = () => {
         const nuevoContacto = {
         name: entradaName,
         phone: entradaPhone,
-        id: contactos.length + 1,
+        
       }
       setContactos(contactos.concat(nuevoContacto))
+      //enviamos el nuevo contacto al json-server
+      agendaHandle
+      .create(nuevoContacto)
       setEntradaName('')  
       setEntradaPhone('') 
     } else{
@@ -76,7 +80,7 @@ const App = () => {
       
     
     <ul>          
-    {contactos.map(contacto => <Persona key={contacto.id} contacto={contacto} />  )}
+    {contactos.map(contacto => <Persona key={contacto.name} contacto={contacto} />  )}
     </ul>
     </div>
   )
