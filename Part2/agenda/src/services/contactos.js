@@ -1,8 +1,10 @@
 import axios from 'Axios'
 const baseUrl = 'http://localhost:3001/persons/'
 
-const getAll = () => {
-    return axios.get(baseUrl)
+const getAll = (mensaje) => {
+    return axios
+    .get(baseUrl)
+    
   }
   
   const create = (newObject, reset) => {
@@ -10,15 +12,19 @@ const getAll = () => {
     .then(reset)
   }
   
-  const update = (id, newObject, reset) => {
+  const update = (id, newObject, reset, mensaje) => {
     return axios.put(`${baseUrl}${id}`, newObject)
     .then(reset)
+    
+
   }
   const deletePerson = (id, reset) =>{
-    const message= '¿Seguro desea eliminar el contacto?'
-    confirm(message)
+    return(
     axios.delete(`${baseUrl}${id}`)
     .then(reset)
+    )
+    
+    
 
   }
   

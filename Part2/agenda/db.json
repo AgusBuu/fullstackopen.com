@@ -7,12 +7,6 @@
       "phone": "56987565"
     },
     {
-      "name": "Ada Lovelace",
-      "number": "39-44-5323523",
-      "id": "2",
-      "phone": "5658756"
-    },
-    {
       "name": "Dan Abramov",
       "number": "12-43-234345",
       "id": "3",
@@ -33,11 +27,6 @@
       "id": "ec35",
       "name": "Liren Sosa",
       "phone": "9998"
-    },
-    {
-      "id": "3e49",
-      "name": "Agus",
-      "phone": "888"
     }
   ]
 }
