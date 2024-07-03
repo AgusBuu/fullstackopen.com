@@ -3,22 +3,26 @@
     {
       "name": "Arto Hellas",
       "number": "040-123456",
-      "id": "1"
+      "id": "1",
+      "phone": "56987565"
     },
     {
       "name": "Ada Lovelace",
       "number": "39-44-5323523",
-      "id": "2"
+      "id": "2",
+      "phone": "5658756"
     },
     {
       "name": "Dan Abramov",
       "number": "12-43-234345",
-      "id": "3"
+      "id": "3",
+      "phone": "654654654"
     },
     {
       "name": "Mary Poppendieck",
       "number": "39-23-6423122",
-      "id": "4"
+      "id": "4",
+      "phone": "654621168"
     },
     {
       "id": "bd6d",
@@ -28,7 +32,12 @@
     {
       "id": "ec35",
       "name": "Liren Sosa",
-      "phone": "6546546"
+      "phone": "9998"
+    },
+    {
+      "id": "3e49",
+      "name": "Agus",
+      "phone": "888"
     }
   ]
 }

@@ -4,6 +4,7 @@ const Persona = ({contacto, deleteP}) =>{
         <>
         <li> 
             Nombre: {contacto.name} || Teléfono: {contacto.phone} 
+            &nbsp;||&nbsp;
             <button onClick={deleteP}>borrar</button>
         </li>
 

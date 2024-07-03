@@ -22,6 +22,7 @@ const recargar = ()=>{
   .catch(error => {
     console.error('Error fetching contacts:', error);
   }) 
+  console.log('recargado...')
 }
 
     useEffect(() => {
@@ -51,9 +52,10 @@ const recargar = ()=>{
         
       }
       setContactos(contactos.concat(nuevoContacto))
+      const reset= () => recargar()
       //enviamos el nuevo contacto al json-server
       agendaHandle
-      .create(nuevoContacto)
+      .create(nuevoContacto, reset)
       setEntradaName('')  
       setEntradaPhone('') 
       
@@ -61,8 +63,22 @@ const recargar = ()=>{
 
     }
     if (existeName){
-      alert ('el contacto '+entradaName+' ya existe en la agenda') 
+      const mensaje = 'el contacto '+entradaName+' ya existe en la agenda desea reemplazar su número por uno nuevo?'
+      if(confirm(mensaje)){
+        const reset= () => recargar()
+        const contactoFind = contactos.find(contacto=>contacto.name==entradaName)
+        console.log('encontró el contacto: ', contactoFind.id)
+        const contactoUpdate = {...contactoFind, phone:entradaPhone}
+        console.log('contacto update quedó así: ', contactoUpdate)
+        agendaHandle.update(contactoFind.id, contactoUpdate, reset)
+        setEntradaName('')  
+        setEntradaPhone('') 
       
+      }else{
+        alert('El contacto no fue actualizado')
+        setEntradaName('')  
+        setEntradaPhone('') 
+      }
       
       
     } if(existePhone){

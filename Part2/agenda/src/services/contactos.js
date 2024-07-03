@@ -5,17 +5,19 @@ const getAll = () => {
     return axios.get(baseUrl)
   }
   
-  const create = newObject => {
+  const create = (newObject, reset) => {
     return axios.post(baseUrl, newObject)
+    .then(reset)
   }
   
-  const update = (id, newObject) => {
-    return axios.put(`${baseUrl}/${id}`, newObject)
+  const update = (id, newObject, reset) => {
+    return axios.put(`${baseUrl}${id}`, newObject)
+    .then(reset)
   }
   const deletePerson = (id, reset) =>{
     const message= '¿Seguro desea eliminar el contacto?'
     confirm(message)
-    axios.delete(`${baseUrl}${id}`).then(()=>reset)
+    axios.delete(`${baseUrl}${id}`)
     .then(reset)
 
   }
