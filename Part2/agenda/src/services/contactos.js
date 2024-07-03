@@ -12,5 +12,12 @@ const getAll = () => {
   const update = (id, newObject) => {
     return axios.put(`${baseUrl}/${id}`, newObject)
   }
+  const deletePerson = (id, reset) =>{
+    const message= '¿Seguro desea eliminar el contacto?'
+    confirm(message)
+    axios.delete(`${baseUrl}${id}`).then(()=>reset)
+    .then(reset)
+
+  }
   
-  export default {getAll, create, update}
+  export default {getAll, create, update, deletePerson}

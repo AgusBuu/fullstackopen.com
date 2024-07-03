@@ -11,7 +11,7 @@ return (
     <ul>
 
   {search.length > 0? filteredContactos.map(contacto => (
-    <Persona key={contacto.id} contacto={contacto} />
+    <Persona key={contacto.id} contacto={contacto}  />
   )):''
   
   }

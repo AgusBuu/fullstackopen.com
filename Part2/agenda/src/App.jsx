@@ -12,20 +12,26 @@ const App = () => {
   const [entradaName, setEntradaName] = useState('') //esta entrada levanta el input de NOMBRE
   const [entradaPhone, setEntradaPhone] = useState(0) //levanta el input teléfono
   const [contactos, setContactos] = useState([])
- 
-  useEffect(() => {
-    console.log('effect')
-    agendaHandle
-      .getAll()
-      .then(response => {
-        console.log('promise fulfilled')
-        setContactos(response.data)
-      })
-  }, [])
-
   const [search, setSearch] = useState('')//levanta los términos de búsqueda
+ //carga localmente la agenda desde el servidor
+const recargar = ()=>{
+  agendaHandle.getAll()
+  .then(response => {
+    setContactos(response.data);
+  })
+  .catch(error => {
+    console.error('Error fetching contacts:', error);
+  }) 
+}
+
+    useEffect(() => {
+    console.log('effect')
+    recargar()  }, [])
+
+  
   let existeName = false //variables para verificar si el contacto existe en la agenda
   let existePhone = false
+
   const verificarExistentes = () =>{
   
     contactos.map (contacto => {
@@ -50,13 +56,13 @@ const App = () => {
       .create(nuevoContacto)
       setEntradaName('')  
       setEntradaPhone('') 
+      
     } else{
 
     }
     if (existeName){
       alert ('el contacto '+entradaName+' ya existe en la agenda') 
-      setEntradaName('')  
-      setEntradaPhone('')  
+      
       
       
     } if(existePhone){
@@ -67,7 +73,14 @@ const App = () => {
 
     }
     }
-    
+
+    const deleteContacto = (id) => {
+      
+      const reset= () => recargar()
+      agendaHandle.deletePerson(id, reset)
+        
+    }
+
   return (
     <div>
       <h1>Mi Agenda retro</h1>
@@ -80,7 +93,7 @@ const App = () => {
       
     
     <ul>          
-    {contactos.map(contacto => <Persona key={contacto.name} contacto={contacto} />  )}
+    {contactos.map(contacto => <Persona key={contacto.name} contacto={contacto} deleteP={()=>deleteContacto(contacto.id)} />  )}
     </ul>
     </div>
   )
