@@ -18,7 +18,12 @@ const App = () => {
   const [search, setSearch] = useState('')//levanta los términos de búsqueda
   const [errorMensaje, setErrorMensaje] = useState(null) //mensaje de error o confirmación 
   const [tipoError, setTipoError] = useState('')//maneja el color de las notificaciones que aparecen en pantalla, pasa como parámetro tipo al componente notificacion, y se usa como clase css
- //carga localmente la agenda desde el servidor
+ 
+ //saludo
+
+ console.log('Hello! claramente el objetivo de esta parte es entender los conceptos acerca de las comunicaciones entre react y un servidor a través de una api. los estilos implementados son intencionalmente feos jajaj')
+ 
+  //carga localmente la agenda desde el servidor
 const recargar = ()=>{
   agendaHandle.getAll()
   .then(response => {
